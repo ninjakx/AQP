@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-image: url(/img/chevron-down-navy.svg);
+    background-position: center right .75rem;
+    background-repeat: no-repeat;
+    background-size: .75rem .75rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+.site-sidebar
+{
+  height:500px;
+  width:300px;
+}
+.p6 sm-p3 md-p4
+{
+  height:500px;
+  width:300px;  
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Viberr{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <nav class="navbar navbar-inverse bg-primary">
+          <div class="container">
+          <div class="row">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header page-scroll">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+              </div>
+
+
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="navbar-collapse">
+
+                  <ul class="nav navbar-nav navbar-right" style="display:block;">
+
+                     <li class="active"><a href= "{% url 'home' %}">Home</a></li>
+                     <li><a href="#">About</a></li>
+                     <li><a href="#">Contacts</a></li>
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container-fluid -->
+      </nav>
+<nav class = "site-sidebar bg-white" data-reactid="35">
+   <div class = "p6 sm-p3 md-p4" data-reactid="39">
+     <div id="time-period" class="mb5" data-reactid="98">
+       <div class="mb3 fs-22 bold border-bottom border-blue-light" data-reactid="99">
+         Time period</div>
+         <div class = "clearfix" data-reactid="100">
+
+           <div class = "col col-5" data-reactid="101">
+             <label for="since" class = "hide" data-rectid="102">Time from</label>
+             <select aria-controls="explorer" class="col-12 field field-sm select border-blue" id="since"
+             data-reactid="103">
+<option data-reactid="104">1995</option>
+<option data-reactid="105">1996</option>
+<option data-reactid="106">1997</option>
+<option data-reactid="107">1998</option>
+<option data-reactid="108">1999</option>
+<option data-reactid="109">2000</option>
+<option data-reactid="110">2001</option>
+<option data-reactid="111">2002</option>
+<option data-reactid="112">2003</option>
+<option data-reactid="113">2004</option>
+<option data-reactid="114">2005</option>
+<option selected="" data-reactid="115">2006</option>
+<option data-reactid="116">2007</option>
+<option data-reactid="117">2008</option>
+<option data-reactid="118">2009</option>
+<option data-reactid="119">2010</option>
+<option data-reactid="120">2011</option>
+<option data-reactid="121">2012</option>
+<option data-reactid="122">2013</option>
+<option data-reactid="123">2014</option>
+<option data-reactid="124">2015</option>
+<option data-reactid="125">2016</option>
+</select>
+<span class="col col-2 fs-18 lh-32 center" data-reactid="126">to</span>
+  <select aria-controls="explorer" class="col-12 field field-sm select border-blue" id="until"
+  data-reactid="129">
+  <option data-reactid="130">1995</option>
+  <option data-reactid="131">1996</option>
+  <option data-reactid="132">1997</option>
+  <option data-reactid="133">1998</option>
+  <option data-reactid="134">1999</option>
+  <option data-reactid="135">2000</option>
+  <option data-reactid="136">2001</option>
+  <option data-reactid="137">2002</option>
+  <option data-reactid="138">2003</option>
+  <option data-reactid="139">2004</option>
+  <option data-reactid="140">2005</option>
+  <option data-reactid="141">2006</option>
+  <option data-reactid="142">2007</option>
+  <option data-reactid="143">2008</option>
+  <option data-reactid="144">2009</option>
+  <option data-reactid="145">2010</option>
+  <option data-reactid="146">2011</option>
+  <option data-reactid="147">2012</option>
+  <option data-reactid="148">2013</option>
+  <option data-reactid="149">2014</option>
+  <option data-reactid="150">2015</option>
+  <option selected="" data-reactid="151">2016</option>
+</select>
+</div>
+</div>
+</div>
+</nav>
+</body>
+</html>
