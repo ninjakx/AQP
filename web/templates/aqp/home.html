@@ -1,0 +1,248 @@
+
+<style>
+#time_head
+{margin-top:10px;
+width:300px;
+height:30px;
+padding:5px;
+background:#0282CB;
+}
+.text1
+{padding-top:5px;
+
+}
+.w3-container1
+{
+top:100px;
+}
+#id_From,#id_To{
+margin-top:0px;
+text-align-last:center;
+}
+
+.con
+{
+padding-left:10px;
+padding-right:10px;
+width:300px;
+height:170px;
+text-align: center;
+}
+
+#parent {
+  display: flex;
+}
+#narrow {
+  width: 400px;
+  
+}
+#wide {
+  flex: 1;
+
+}
+
+
+</style>
+
+
+{% include "base.html" %}
+{% load staticfiles %}
+
+<html lang="en">
+
+{% block content %}
+ 
+
+      <!-- Latest compiled and minified CSS
+  -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+
+	<!-- Optional theme
+ -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+<div id="parent">
+  <div id="narrow">
+<div class = "con">
+<form action="" method="get">
+    <label id="time_head" for="year_range">TIME PERIOD</label>
+    <table height ="19px" class="table">
+      <tbody>
+        <tr>
+          <td class = "form-group" width="200">
+  
+    {{ form1.as_p }}
+ </td>
+         <td width="100">
+  
+   <p class="text1" align="center">TO</p>
+ </td>
+          <td width="200" class="form-group">
+  
+    {{ form2.as_p }}
+ </td>
+         
+
+</tr>
+      </tbody>
+    </table>
+
+
+    <input id="b1" class="btn btn-primary btn-block" width="100px" type="submit" name="featured" value="Filter" />
+</form>
+</div>
+</div>
+  <div id="wide">
+<div class="w3-container"  style="width:800px;">
+  
+  <div class="w3-card-4">
+    <header class="w3-container w3-blue">
+      <h1>Header</h1>
+    </header>
+
+    <div class="w3-container">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatdfdfd<br><br><br><br><br><br><br><br><br><br><br><br>.</p>
+    </div>
+
+    <footer class="w3-container w3-blue">
+      <h5>Footer</h5>
+    </footer>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+  
+    google.load("visualization", "1", {packages:["corechart"]});
+    var mydata = "{{ data|escapejs }}"
+    
+</script>
+
+    <script type="text/javascript">
+
+      function drawVisualization() {
+        // Create and populate the data table.
+        var mydata = {{ data|safe }}
+
+
+        var data = google.visualization.arrayToDataTable(mydata);
+
+        // Create and draw the visualization.
+        var ac = new google.visualization.ComboChart(document.getElementById('visualization'));
+        ac.draw(data, {
+          title : 'Vehicles Data',
+          width: 1100,
+          height: 450,
+          
+          seriesType: "line",
+          series: {0: {  // set the options for the first series (columns)
+                type: "line",
+               
+                color: '#f74504'
+
+            },
+            1: {  // set the options for the second series (line)
+                type: "line",
+          
+                color: '#ff8944'
+
+            },
+            2: {  // set the options for the second series (line)
+                type: "line",
+
+                color: '#338067'
+
+            },
+            3: {  // set the options for the second series (line)
+                type: "line",
+
+                color: '#FC53D2'
+            },
+            4: {  // set the options for the second series (line)
+                type: "line",
+
+                color: '#fc5d8f'
+
+            },
+            5: {  // set the options for the second series (line)
+                type: "line",
+
+                color: '#338067'
+
+            },
+            6: {  // set the options for the second series (line)
+                type: "bars",
+
+                color: '#27e83a'
+            }}
+        });
+      }
+
+
+
+      google.setOnLoadCallback(drawVisualization);
+    </script>
+{% load staticfiles %}
+
+
+
+
+
+<div class="w3-container"  style="width:1180px;margin-top:20px">
+  
+  <div class="w3-card-4">
+
+    <div class="w3-container" style="height:450px;">
+      <div id="visualization" style="width: 600px; height: 400px;"></div>
+    </div>
+
+    <footer class="w3-container w3-Amber">
+      <img src="{% static "media/car.png" %}" />: {{ fw }} {% if fws ==  0 %} (<img src="{% static "media/add1.png" %}" />) 
+{% elif fws ==  1 %} (<img src="{% static "media/minus.png" %}" />) {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static "media/auto1.png" %}" />: {{ ar }} {% if ars ==  0 %} (<img src="{% static "media/add1.png" %}" />) 
+{% elif ars ==  1 %} (<img src="{% static "media/minus.png" %}" />) {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static "media/bus1.png" %}" />: {{ bs }} {% if bss ==  0 %} (<img src="{% static "media/add1.png" %}" />) 
+{% elif bss ==  1 %} (<img src="{% static "media/minus.png" %}" />) {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static "media/taxi.png" %}" />: {{ tx }} {% if txs ==  0 %} (<img src="{% static "media/add1.png" %}" />) 
+{% elif txs ==  1 %} (<img src="{% static "media/minus.png" %}" />) {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static "media/motorbiking.png" %}" />: {{ tw }} {% if tws ==  0 %} (<img src="{% static "media/add1.png" %}" />) 
+{% elif tws ==  1 %} (<img src="{% static "media/minus.png" %}" />) {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static "media/truck.png" %}" />: {{ gv }} {% if gvs ==  0 %} (<img src="{% static "media/add1.png" %}" />) 
+{% elif gvs ==  1 %} (<img src="{% static "media/minus.png" %}" />) {% endif %}
+    </footer>
+  </div>
+</div>  
+  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+  <script type="text/javascript" src="http://code.highcharts.com/highcharts-3d.js"></script> 
+<div class="w3-container"  style="width:1180px;margin-top:20px">
+  
+  <div class="w3-card-4">
+
+    <div class="w3-container" style="height:450px;">
+    {{ chart2.as_html }}
+    </div>
+    
+
+  </div>
+</div> 
+
+
+
+
+
+{% endblock %}
+
+<div style="margin-top:170px" class="w3-panel w3-pink">
+    <h6 class="w3-opacity" style="text-align:center">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></h2>
+  </div>
+
