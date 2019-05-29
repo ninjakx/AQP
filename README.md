@@ -1,4 +1,4 @@
-Predicting air quality by using time series forecasting (ARIMAX model).
+Predicting air quality by using time series forecasting (ARIMA model).
 
 ## TODO
 - [x] Analytics (graphs)
