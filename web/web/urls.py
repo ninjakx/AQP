@@ -26,10 +26,9 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^about', views.about, name='about'),
     url(r'^contact', views.contact, name='contact'),
-    url(r'^meow', views.data, name='data'),
+    url(r'^real_time', views.data, name='data'),
     url(r'^stats', views.stat, name='stat'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
 
 
