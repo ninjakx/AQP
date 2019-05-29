@@ -21,7 +21,7 @@ class Data(models.Model):
         return str(self.Year)
 
 class pol(models.Model):
-    Station_Name = models.CharField(max_length=30,blank=False)
+    Station_Name = models.IntegerField(blank=False)
     Ammonia = models.CharField(max_length=30,blank=False)
     Carbon_Monoxide = models.CharField(max_length=30,blank=False)
     Nitrogen_Oxide = models.CharField(max_length=30,blank=False)
