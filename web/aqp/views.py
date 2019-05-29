@@ -9,6 +9,7 @@ import os
 from django.conf import settings
 import csv
 from django.views.decorators.csrf import csrf_exempt
+import time
 
 #static_template = os.path.join(settings.STATIC_ROOT, 'templates/aqp')
 #print(static_template)
@@ -55,147 +56,126 @@ def homie(request):
 
 @csrf_exempt
 def data(request):
+     Am = " "
+     CO = " "
+     NO = " "
+     OZ = " "
+     SO2 = " "
+     AT = " "
+     PM10 = " "
+     BE = " "
+     NO2 = " "
+     ON = " "
+     pxy = " "
+     TO = " "
+     BP = " "
+     PM2_5 = " "
+     SR = " "
+     Station_Name = " "
+
+
      if request.method == 'POST':
          if 'rowd' in request.POST:
            rowd = request.POST['rowd']
 
-           print("station",rowd)
+           
+           station_code = {"av":"QW5hbmRWaWhhcg==","mm":"TWFuZGlybWFyZw==",
+           "pb":"UHVuamFiaUJhZ2g=","rkPuram":"UktQdXJhbQ==","airpo":"SUdJ",
+           "civilLines":"Q2l2aWxsaW5lcw==","dw":"RHdhcmthU2VjdHJvOA=="}
            result = None
-           while result is None:
-             try:
-                     url_start = "http://www.dpccairdata.com/dpccairdata/display/"
-                     #station_name = ["av","mm","pb","rkPuram","airpo","civilLines"]
-                     url_end = "View15MinData.php"
-                     #c=0
-                     #for sn in station_name:
-                     #c=c+1
-                     url = url_start + rowd + url_end
+           #while result:
+           sc = {"av":1,"mm":2,
+           "pb":3,"rkPuram":4,"airpo":5,
+           "civilLines":6,"dw":7}
+
+           station_names = {"av":"Anand Vihar","mm":"Mandir Marg",
+           "pb":"Punjabi Bagh","rkPuram":"R.K. Puram","airpo":"IGI Airport",
+           "civilLines":"Civil Lines","dw":"Dwarka"}
+
+           while(result is None):
+                     print("station",station_names[rowd])
+                     Station_Name = " in " + station_names[rowd]
+                     url = "http://www.dpccairdata.com/dpccairdata/display/AallStationView5MinData.php?stName={}".format(station_code[rowd])
+
                      html = urllib.request.urlopen(url).read()
                      soup = BeautifulSoup(html)
-                     td1 = soup.find_all("tr", {"class" : "tdcolor1"})
-                     td2 = soup.find_all("tr", {"class" : "tdcolor2"})
+                     regex = re.compile('tdcolor.*')
+                     td1 = soup.find_all("tr", {"class" : regex})
+                     #td2 = soup.find_all("tr", {"class" : "tdcolor2"})
                      param = ["Ammonia","Carbon Monoxide","Nitrogen Oxide","Ozone","Sulphur Dioxide","Ambient Temperature"," Particulate Matter < 10 µg","Benzene","Nitrogen Dioxide","Oxides of Nitrogen","p-Xylene","Toluene","Barometric Pressure"," Particulate Matter < 2.5 µg","Solar Radiation"]
 
-                     #if len(td1) ==0 and len(td2) == 0 :
-                     #print("NULL:condition")
-
-
-
-
                      for i in td1:
-                         #print(i)
                          td_list = i.find_all("td")
                          if td_list[0].text in param:
 
-                             val = re.findall(r"[-+]?\d*\.\d+|\d+",td_list[3].text)[0]
-                             #print(td_list[0].text)
-                             #print(td_list[3].text)
-
-
+                             val = td_list[3].text.split(" ")[0]
+                             if(val==''):
+                                val = "-"
                              if param.index(td_list[0].text) == 0:
-                                 Ammonia = val
+                                 Ammonia = val                            
                                  print("AMMONIA:",val)
+                                 Am = val
                              elif param.index(td_list[0].text) == 1:
                                  Carbon_Monoxide = val
                                  print("CO:",val)
+                                 CO = val
                              elif param.index(td_list[0].text) == 2:
                                  Nitrogen_Oxide = val
                                  print("NO:",val)
+                                 NO = val
                              elif param.index(td_list[0].text) == 3:
                                  Ozone = val
                                  print("OZONE:",val)
+                                 OZ = val
                              elif param.index(td_list[0].text) == 4:
                                  Sulphur_Dioxide = val
-                                 print("SO:",val)
+                                 print("SO2:",val)
+                                 SO2 = val
                              elif param.index(td_list[0].text) == 5:
                                  Ambient_Temperature = val
                                  print("AMBIENT TEMP:",val)
+                                 AT = val
                              elif param.index(td_list[0].text) == 6:
                                  Particulate_Matter_10 = val
                                  print("PPP10:",val)
+                                 PM10 = val
                              elif param.index(td_list[0].text) == 7:
                                  Benzene = val
                                  print("BENZENE:",val)
+                                 BE = val
                              elif param.index(td_list[0].text) == 8:
                                  Nitrogen_Dioxide = val
-                                 print("NO:",val)
+                                 print("NO2:",val)
+                                 NO2 = val
                              elif param.index(td_list[0].text) == 9:
                                  Oxides_of_Nitrogen = val
                                  print("ON:",val)
+                                 ON = val
                              elif param.index(td_list[0].text) == 10:
                                  p_Xylene = val
                                  print("P_XYLENE:",val)
+                                 pxy = val
                              elif param.index(td_list[0].text) == 11:
                                  Toluene = val
                                  print("TOLUENE:",val)
+                                 TO = val
                              elif param.index(td_list[0].text) == 12:
                                  Barometric_Pressure = val
                                  print("BAROMETRIC:",val)
+                                 BP = val
                              elif param.index(td_list[0].text) == 13:
                                  Particulate_Matter_2 = val
                                  print("PPO2:",val)
+                                 PM2_5 = val
                              elif param.index(td_list[0].text) == 14:
                                  Solar_Radiation = val
                                  print("Solar_rad:",val)
-
-
-
-
-
-                     for i in td2:
-                         #print(i)
-                         td_list = i.find_all("td")
-                         if td_list[0].text in param:
-                             #print(re.findall(r"[-+]?\d*\.\d+|\d+",td_list[3].text)[0])
-                             #print(td_list[0].text)
-                             #print(td_list[3].text)
-                             val = re.findall(r"[-+]?\d*\.\d+|\d+",td_list[3].text)[0]
-                             if param.index(td_list[0].text) == 0:
-                                 Ammonia = val
-                                 print("AMMONIA:",val)
-                             elif param.index(td_list[0].text) == 1:
-                                 Carbon_Monoxide = val
-                                 print("CO:",val)
-                             elif param.index(td_list[0].text) == 2:
-                                 Nitrogen_Oxide = val
-                                 print("NO:",val)
-                             elif param.index(td_list[0].text) == 3:
-                                 Ozone = val
-                                 print("OZONE:",val)
-                             elif param.index(td_list[0].text) == 4:
-                                 Sulphur_Dioxide = val
-                                 print("SO:",val)
-                             elif param.index(td_list[0].text) == 5:
-                                 Ambient_Temperature = val
-                                 print("AMBIENT TEMP:",val)
-                             elif param.index(td_list[0].text) == 6:
-                                 Particulate_Matter_10 = val
-                                 print("PPP10:",val)
-                             elif param.index(td_list[0].text) == 7:
-                                 Benzene = val
-                                 print("BENZENE:",val)
-                             elif param.index(td_list[0].text) == 8:
-                                 Nitrogen_Dioxide = val
-                                 print("NO:",val)
-                             elif param.index(td_list[0].text) == 9:
-                                 Oxides_of_Nitrogen = val
-                                 print("ON:",val)
-                             elif param.index(td_list[0].text) == 10:
-                                 p_Xylene = val
-                                 print("P_XYLENE:",val)
-                             elif param.index(td_list[0].text) == 11:
-                                 Toluene = val
-                                 print("TOLUENE:",val)
-                             elif param.index(td_list[0].text) == 12:
-                                 Barometric_Pressure = val
-                                 print("BAROMETRIC:",val)
-                             elif param.index(td_list[0].text) == 13:
-                                 Particulate_Matter_2 = val
-                                 print("PPO2:",val)
-                             elif param.index(td_list[0].text) == 14:
-                                 Solar_Radiation = val
-                                 print("Solar_rad:",val)
-                     obj = pol(c)
+                                 SR = val
+                     
+                     #time.sleep(1000)
+                     global context
+                     result = 1
+                     '''obj = pol(str(sc[rowd]))
                      print(Ammonia,Carbon_Monoxide,Nitrogen_Oxide,Ozone,Sulphur_Dioxide,Ambient_Temperature,Particulate_Matter_10
                      ,Benzene,Nitrogen_Dioxide,Oxides_of_Nitrogen,p_Xylene,Toluene,Barometric_Pressure,Particulate_Matter_2,Solar_Radiation)
                      obj.Ammonia = Ammonia
@@ -213,37 +193,15 @@ def data(request):
                      obj.Barometric_Pressure = Barometric_Pressure
                      obj.Particulate_Matter_2 = Particulate_Matter_2
                      obj.Solar_Radiation = Solar_Radiation
-                     obj.save()
-                     context = {"Ammonia":Ammonia,"Carbon_Monoxide":Carbon_Monoxide,"Nitrogen_Oxide":Nitrogen_Oxide,"Ozone":Ozone,
-"Sulphur_Dioxide":Sulphur_Dioxide,"Ambient_Temperature":Ambient_Temperature,"Particulate_Matter_10":Particulate_Matter_10
-          ,"Benzene":Benzene,"Nitrogen_Dioxide":Nitrogen_Dioxide,"Oxides_of_Nitrogen":Oxides_of_Nitrogen,"p_Xylene":p_Xylene,
-"Toluene":Toluene,"Barometric_Pressure":Barometric_Pressure,"Particulate_Matter_2":Particulate_Matter_2,"Solar_Radiation":Solar_Radiation}
-                     result = 1
-                     return render(request,"aqp/template.html",context) 
-                     
-             except:
-                 pass
-     Ammonia = ""
-     Carbon_Monoxide = ""
-     Nitrogen_Oxide = ""
-     Ozone = ""
-     Sulphur_Dioxide = ""
-     Ambient_Temperature = ""
-     Particulate_Matter_10 = ""
-     Benzene = ""
-     Nitrogen_Dioxide = ""
-     Oxides_of_Nitrogen = ""
-     p_Xylene = ""
-     Toluene = ""
-     Barometric_Pressure = ""
-     Particulate_Matter_2 = ""
-     Solar_Radiation = ""
-     context = {"Ammonia":Ammonia,"Carbon_Monoxide":Carbon_Monoxide,"Nitrogen_Oxide":Nitrogen_Oxide,"Ozone":Ozone,
-        "Sulphur_Dioxide":Sulphur_Dioxide,"Ambient_Temperature":Ambient_Temperature,"Particulate_Matter_10":Particulate_Matter_10
-          ,"Benzene":Benzene,"Nitrogen_Dioxide":Nitrogen_Dioxide,"Oxides_of_Nitrogen":Oxides_of_Nitrogen,"p_Xylene":p_Xylene,
-     "Toluene":Toluene,"Barometric_Pressure":Barometric_Pressure,"Particulate_Matter_2":Particulate_Matter_2,"Solar_Radiation":Solar_Radiation}
-     return render(request,"aqp/template.html",context)
-
+                     obj.save()'''
+     
+     context = {"Ammonia":Am,"Carbon_Monoxide":CO,"Nitrogen_Oxide":NO,"Ozone":OZ,
+"Sulphur_Dioxide":SO2,"Ambient_Temperature":AT,"Particulate_Matter_10":PM10
+          ,"Benzene":BE,"Nitrogen_Dioxide":NO2,"Oxides_of_Nitrogen":ON,"p_Xylene":pxy,
+"Toluene":TO,"Barometric_Pressure":BP,"Particulate_Matter_2":PM2_5,"Solar_Radiation":SR,"StationName":Station_Name}
+     print(context)
+     #print(type(context) is dict)
+     return render(request,"aqp/template.html",context)                 
 
 
 
