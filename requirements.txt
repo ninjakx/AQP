@@ -1,0 +1,4 @@
+django-graphos
+django==3.0.6
+django-utils-six
+
