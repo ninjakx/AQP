@@ -18,10 +18,11 @@ file_path = os.path.join(settings.STATIC_ROOT, 'data.csv')
 
 import json
 from django.http import JsonResponse
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse
+# from django.core.urlresolvers import reverse_lazy
 from django.utils.encoding import force_text
 from django.views.generic.edit import FormView
-from django.shortcuts import render_to_response,render
+from django.shortcuts import render
 from django.views import generic
 from .forms import Form1,Form2
 from graphos.sources.simple import SimpleDataSource
