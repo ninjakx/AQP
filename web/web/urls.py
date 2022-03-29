@@ -17,7 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import reverse
 
 admin.autodiscover()
 from aqp import views
@@ -25,10 +24,6 @@ from aqp import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-    url(r'^about', views.about, name='about'),
-    url(r'^contact', views.contact, name='contact'),
-    url(r'^real_time', views.data, name='data'),
-    url(r'^stats', views.stat, name='stat'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
