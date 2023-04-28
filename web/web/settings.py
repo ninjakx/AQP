@@ -132,7 +132,7 @@ print(MEDIA_ROOT)
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 print(STATIC_ROOT)
 STATICFILES_DIRS = (
-    os.path.join(os.path.dirname(BASE_DIR), "static", "static_files"),
+    os.path.join(os.path.dirname(BASE_DIR), "static/media"),
 )
 
 TEMPLATE_DIRS = (

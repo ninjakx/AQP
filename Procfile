@@ -1,1 +1,1 @@
- web: cd ./web && python manage.py migrate && gunicorn --bind 0.0.0.0:8000 web.wsgi:application
+ web: cd ./web && python manage.py migrate && gunicorn web.wsgi:application --bind 0.0.0.0:8000
