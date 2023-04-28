@@ -141,5 +141,10 @@ TEMPLATE_DIRS = (
 )
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://aqp-web'
+]
+
+
 STRIPE_SECRET_KEY = "sk_test_tXCtSORPdz4nrozcoOsiCy2A"
 STRIPE_PUBLISHABLE_KEY = "pk_test_giqz4Y9dhjdg6QtIUbuOBahj"
