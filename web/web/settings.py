@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print("basdir",BASE_DIR)
+# print("basdir",BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -126,11 +126,11 @@ MEDIA_URL = '/media/'
 
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
-print(MEDIA_ROOT)
+# print(MEDIA_ROOT)
 #MEDIA_ROOT = '/Users/jmitch/Desktop/web/static/media/'
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
-print(STATIC_ROOT)
+# print(STATIC_ROOT)
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(BASE_DIR), "static/media"),
 )
@@ -141,9 +141,9 @@ TEMPLATE_DIRS = (
 )
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://aqp-web'
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://aqp-web'
+# ]
 
 
 STRIPE_SECRET_KEY = "sk_test_tXCtSORPdz4nrozcoOsiCy2A"
