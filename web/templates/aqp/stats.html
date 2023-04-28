@@ -26,46 +26,59 @@
 <script>
 $(function () {
 
+// var data = [
+//     ['in-5390',''], //
+//     ['in-py', 9],  // Puducherry
+//     ['in-ld', ''],  // Lakshadeep *
+//     ['in-an', ''],  // 
+//     ['in-wb', 14], // West Bengal
+//     ['in-or', 7],  // Orissa
+//     ['in-br', 7],  // Bihar
+//     ['in-sk', ''],  // Sikkim *
+//     ['in-ct', 16], // Chattisgarh
+//     ['in-tn', 13],  // Tamil Nadu
+//     ['in-mp', 16],  // Madhya Pradesh
+//     ['in-2984',21],  // Gujarat
+//     ['in-ga', 20],  // Goa
+//     ['in-nl', 3],  // Nagaland
+//     ['in-mn', ''],  // Manipur *
+//     ['in-ar', ''],  // Arunanachal Pradesh *
+//     ['in-mz', 3],   // Mizoram  
+//     ['in-tr', ''],  // Tripura *
+//     ['in-3464',10],  // Daman and Diu
+//     ['in-dl', 20],  // Delhi 
+//     ['in-hr', 20],  // Haryana
+//     ['in-ch', 3],   // Chandigarh
+//     ['in-hp', 4],   // Himachal Pradesh
+//     ['in-jk', 7],   // Jammu & Kashmir
+//     ['in-kl', 6],   // Kerala
+//     ['in-ka', 14],  // Karnataka
+//     ['in-dn', 10],  // Dadra & Nagar Haveli
+//     ['in-mh', 24], // Maharashtra
+//     ['in-as', 10], // Assam
+//     ['in-ap', 7],  // Andhra Pradesh
+//     ['in-ml', 3],   // Meghalaya
+//     ['in-pb', 16],  // Punjab
+//     ['in-rj', 10], // Rajasthan
+//     ['in-up', 17], // Uttar Pradesh
+//     ['in-ut', ''], //Uttaranchal
+//     ['in-jh', 33]  // Jharkhand
+// ];
+
 var data = [
-    ['in-5390',''], //
-    ['in-py', 9],  // Puducherry
-    ['in-ld', ''],  // Lakshadeep *
-    ['in-an', ''],  // 
-    ['in-wb', 14], // West Bengal
-    ['in-or', 7],  // Orissa
-    ['in-br', 7],  // Bihar
-    ['in-sk', ''],  // Sikkim *
-    ['in-ct', 16], // Chattisgarh
-    ['in-tn', 13],  // Tamil Nadu
-    ['in-mp', 16],  // Madhya Pradesh
-    ['in-2984',21],  // Gujarat
-    ['in-ga', 20],  // Goa
-    ['in-nl', 3],  // Nagaland
-    ['in-mn', ''],  // Manipur *
-    ['in-ar', ''],  // Arunanachal Pradesh *
-    ['in-mz', 3],   // Mizoram  
-    ['in-tr', ''],  // Tripura *
-    ['in-3464',10],  // Daman and Diu
-    ['in-dl', 20],  // Delhi 
-    ['in-hr', 20],  // Haryana
-    ['in-ch', 3],   // Chandigarh
-    ['in-hp', 4],   // Himachal Pradesh
-    ['in-jk', 7],   // Jammu & Kashmir
-    ['in-kl', 6],   // Kerala
-    ['in-ka', 14],  // Karnataka
-    ['in-dn', 10],  // Dadra & Nagar Haveli
-    ['in-mh', 24], // Maharashtra
-    ['in-as', 10], // Assam
-    ['in-ap', 7],  // Andhra Pradesh
-    ['in-ml', 3],   // Meghalaya
-    ['in-pb', 16],  // Punjab
-    ['in-rj', 10], // Rajasthan
-    ['in-up', 17], // Uttar Pradesh
-    ['in-ut', ''], //Uttaranchal
-    ['in-jh', 33]  // Jharkhand
-];
-
-
+        ['madhya pradesh', 16], ['uttar pradesh', 17], ['karnataka', 14],
+        ['nagaland', 3], ['bihar', 7], ['lakshadweep', 0],
+        ['andaman and nicobar', 0], ['assam', 10], ['west bengal', 14],
+        ['puducherry', 9], ['daman and diu', 10], ['gujarat', 21],
+        ['rajasthan', 10], ['dadara and nagar havelli', 10],
+        ['chhattisgarh', 16], ['tamil nadu', 13], ['chandigarh', 3],
+        ['punjab', 16], ['haryana', 20], ['andhra pradesh', 7],
+        ['maharashtra', 24], ['himachal pradesh', 4], ['meghalaya', 3],
+        ['kerala', 6], ['telangana', 0], ['mizoram', 3], ['tripura', 0],
+        ['manipur', 0], ['arunanchal pradesh', 0], ['jharkhand', 33],
+        ['goa', 20], ['nct of delhi', 20], ['odisha', 14],
+        ['jammu and kashmir', 7], ['sikkim', 0], ['uttarakhand', 0]
+]
     // Initiate the chart
     $('#container').highcharts('Map', {
 
@@ -141,7 +154,7 @@ tooltip: {
         series: [{
             data: data,
  
-            mapData: Highcharts.maps['countries/in/in-all'],
+            mapData: Highcharts.maps['countries/in/custom/in-all-disputed'],
             joinBy: 'hc-key',
             //enableMouseTracking: false,
             name: 'pollution',
@@ -152,7 +165,7 @@ tooltip: {
             },
             dataLabels: {
                 enabled: true,
-                format: '{point.options.name}'
+                format: '{point.name}'
             }
         }, {
     type: 'mappoint',
@@ -161,85 +174,85 @@ tooltip: {
 dataLabels: {
       	enabled: true
       },
-data: [/*{
+// data: [/*{
     	
-      name: 'Chennai',
-      x: 3354,
-      y: -828
-    },*/ {
-      name: 'Delhi',
-      x: 2300,
-      y: -7100,
-      value: 7,
-      AQ: 'L'
-    }, {
-      name: 'Patna',
-      x: 5200,
-      y: -6000,
-      value: 10,
-      AQ: 'L'
-    },
-{
-      name: 'Gwalior',
-      x: 2600,
-      y: -5990,
-      value: 17,
-      AQ: 'L'
+//       name: 'Chennai',
+//       x: 3354,
+//       y: -828
+//     },*/ {
+//       name: 'Delhi',
+//       x: 2300,
+//       y: -7100,
+//       value: 7,
+//       AQ: 'L'
+//     }, {
+//       name: 'Patna',
+//       x: 5200,
+//       y: -6000,
+//       value: 10,
+//       AQ: 'L'
+//     },
+// {
+//       name: 'Gwalior',
+//       x: 2600,
+//       y: -5990,
+//       value: 17,
+//       AQ: 'L'
  
-    },{
-      name: 'Raipur',
-      x: 3900,
-      y: -4300,
-      value: 21,
-      AQ: 'L'
-    },
-{
-      name: 'Ahmedabad',
-      x: 600,
-      y: -5000,
-      value: 21,
-      AQ: 'L'
-    },
-{
-      name: 'Ferozabad',
-      x: 2600,
-      y: -6500,
-      value: 23,
-      AQ: 'M'
-    },
-{
-      name: 'Amritsar',
-      x: 1700,
-      y: -8300,
-      value: 20,
-      AQ: 'L'
-    },
+//     },{
+//       name: 'Raipur',
+//       x: 3900,
+//       y: -4300,
+//       value: 21,
+//       AQ: 'L'
+//     },
+// {
+//       name: 'Ahmedabad',
+//       x: 600,
+//       y: -5000,
+//       value: 21,
+//       AQ: 'L'
+//     },
+// {
+//       name: 'Ferozabad',
+//       x: 2600,
+//       y: -6500,
+//       value: 23,
+//       AQ: 'M'
+//     },
+// {
+//       name: 'Amritsar',
+//       x: 1700,
+//       y: -8300,
+//       value: 20,
+//       AQ: 'L'
+//     },
 
-{
-      name: 'Kanpur',
-      x: 3600,
-      y: -6190,
-      value: 10,
-      AQ: 'L'
-    },
-{
-      name: 'Agra',
-      x: 2500,
-      y: -6600,
-      value: 7,
-      AQ: 'L'
-    }
-,
-{
-      name: 'Ludhiana',
-      x: 1660,
-      y: -8100,
-      value: 13,
-      AQ: 'L'
-    },
+// {
+//       name: 'Kanpur',
+//       x: 3600,
+//       y: -6190,
+//       value: 10,
+//       AQ: 'L'
+//     },
+// {
+//       name: 'Agra',
+//       x: 2500,
+//       y: -6600,
+//       value: 7,
+//       AQ: 'L'
+//     }
+// ,
+// {
+//       name: 'Ludhiana',
+//       x: 1660,
+//       y: -8100,
+//       value: 13,
+//       AQ: 'L'
+//     },
       
       
-    ]
+//     ]
         }]
     });
 });
@@ -248,45 +261,59 @@ data: [/*{
 <script>
 
 $(function () {
-var data = [
-    ['in-5390',''], //
-    ['in-py', 6],  // Puducherry
-    ['in-ld', ''],  // Lakshadeep *
-    ['in-an', ''],  // 
-    ['in-wb', 62], // West Bengal
-    ['in-or', 17],  // Orissa
-    ['in-br', 25],  // Bihar
-    ['in-sk', ''],  // Sikkim *
-    ['in-ct', 21], // Chattisgarh
-    ['in-tn', 19],  // Tamil Nadu
-    ['in-mp', 16],  // Madhya Pradesh
-    ['in-2984',22],  // Gujarat
-    ['in-ga', 17],  // Goa
-    ['in-nl', 6],  // Nagaland
-    ['in-mn', ''],  // Manipur *
-    ['in-ar', ''],  // Arunanachal Pradesh *
-    ['in-mz', 6],   // Mizoram  
-    ['in-tr', ''],  // Tripura *
-    ['in-3464',17],  // Daman and Diu
-    ['in-dl', 52],  // Delhi 
-    ['in-hr', 22],  // Haryana
-    ['in-ch', 15],   // Chandigarh
-    ['in-hp', 14],   // Himachal Pradesh
-    ['in-jk', 12],   // Jammu & Kashmir
-    ['in-kl', 12],   // Kerala
-    ['in-ka', 21],  // Karnataka
-    ['in-dn', 17],  // Dadra & Nagar Haveli
-    ['in-mh', 29], // Maharashtra
-    ['in-as', 14], // Assam
-    ['in-ap', 16],  // Andhra Pradesh
-    ['in-ml', 9],   // Meghalaya
-    ['in-pb', 25],  // Punjab
-    ['in-rj', 27], // Rajasthan
-    ['in-up', 28], // Uttar Pradesh
-    ['in-ut', ''], //Uttaranchal
-    ['in-jh', 37]  // Jharkhand
-];
+// var data = [
+//     ['in-5390',''], //
+//     ['in-py', 6],  // Puducherry
+//     ['in-ld', ''],  // Lakshadeep *
+//     ['in-an', ''],  // 
+//     ['in-wb', 62], // West Bengal
+//     ['in-or', 17],  // Orissa
+//     ['in-br', 25],  // Bihar
+//     ['in-sk', ''],  // Sikkim *
+//     ['in-ct', 21], // Chattisgarh
+//     ['in-tn', 19],  // Tamil Nadu
+//     ['in-mp', 16],  // Madhya Pradesh
+//     ['in-2984',22],  // Gujarat
+//     ['in-ga', 17],  // Goa
+//     ['in-nl', 6],  // Nagaland
+//     ['in-mn', ''],  // Manipur *
+//     ['in-ar', ''],  // Arunanachal Pradesh *
+//     ['in-mz', 6],   // Mizoram  
+//     ['in-tr', ''],  // Tripura *
+//     ['in-3464',17],  // Daman and Diu
+//     ['in-dl', 52],  // Delhi 
+//     ['in-hr', 22],  // Haryana
+//     ['in-ch', 15],   // Chandigarh
+//     ['in-hp', 14],   // Himachal Pradesh
+//     ['in-jk', 12],   // Jammu & Kashmir
+//     ['in-kl', 12],   // Kerala
+//     ['in-ka', 21],  // Karnataka
+//     ['in-dn', 17],  // Dadra & Nagar Haveli
+//     ['in-mh', 29], // Maharashtra
+//     ['in-as', 14], // Assam
+//     ['in-ap', 16],  // Andhra Pradesh
+//     ['in-ml', 9],   // Meghalaya
+//     ['in-pb', 25],  // Punjab
+//     ['in-rj', 27], // Rajasthan
+//     ['in-up', 28], // Uttar Pradesh
+//     ['in-ut', ''], //Uttaranchal
+//     ['in-jh', 37]  // Jharkhand
+// ];
 
+var data = [
+        ['madhya pradesh', 16], ['uttar pradesh', 28], ['karnataka', 21],
+        ['nagaland', 6], ['bihar', 25], ['lakshadweep', 0],
+        ['andaman and nicobar', 0], ['assam', 14], ['west bengal', 62],
+        ['puducherry', 6], ['daman and diu', 17], ['gujarat', 22],
+        ['rajasthan', 27], ['dadara and nagar havelli', 17],
+        ['chhattisgarh', 21], ['tamil nadu', 19], ['chandigarh', 15],
+        ['punjab', 25], ['haryana', 22], ['andhra pradesh', 16],
+        ['maharashtra', 29], ['himachal pradesh', 14], ['meghalaya', 9],
+        ['kerala', 12], ['telangana', 0], ['mizoram', 6], ['tripura', 0],
+        ['manipur', 0], ['arunanchal pradesh', 0], ['jharkhand', 37],
+        ['goa', 17], ['nct of delhi', 52], ['odisha', 17],
+        ['jammu and kashmir', 12], ['sikkim', 0], ['uttarakhand', 0]
+]
 
     // Initiate the chart
     $('#container2').highcharts('Map', {
@@ -351,7 +378,7 @@ tooltip: {
         series: [{
             data: data,
  
-            mapData: Highcharts.maps['countries/in/in-all'],
+            mapData: Highcharts.maps['countries/in/custom/in-all-disputed'],
             joinBy: 'hc-key',
             //enableMouseTracking: false,
             name: 'pollution',
@@ -362,7 +389,7 @@ tooltip: {
             },
             dataLabels: {
                 enabled: true,
-                format: '{point.options.name}'
+                format: '{point.name}'
             }
         }, {
     type: 'mappoint',
@@ -371,85 +398,85 @@ tooltip: {
 dataLabels: {
       	enabled: true
       },
-data: [/*{
+// data: [/*{
     	
-      name: 'Chennai',
-      x: 3354,
-      y: -828
-    },*/ {
-      name: 'Delhi',
-      x: 2300,
-      y: -7100,
-      value: 52,
-      AQ: 'H'
-    }, {
-      name: 'Patna',
-      x: 5200,
-      y: -6000,
-      value: 38,
-      AQ: 'M'
-    },
-{
-      name: 'Gwalior',
-      x: 2600,
-      y: -5990,
-      value: 19,
-      AQ: 'L'
+//       name: 'Chennai',
+//       x: 3354,
+//       y: -828
+//     },*/ {
+//       name: 'Delhi',
+//       x: 2300,
+//       y: -7100,
+//       value: 52,
+//       AQ: 'H'
+//     }, {
+//       name: 'Patna',
+//       x: 5200,
+//       y: -6000,
+//       value: 38,
+//       AQ: 'M'
+//     },
+// {
+//       name: 'Gwalior',
+//       x: 2600,
+//       y: -5990,
+//       value: 19,
+//       AQ: 'L'
  
-    },{
-      name: 'Raipur',
-      x: 3900,
-      y: -4300,
-      value: 41,
-      AQ: ''
-    },
-{
-      name: 'Ahmedabad',
-      x: 600,
-      y: -5000,
-      value: 19,
-      AQ: 'M'
-    },
-{
-      name: 'Ferozabad',
-      x: 2600,
-      y: -6500,
-      value: 31,
-      AQ: 'H'
-    },
-{
-      name: 'Amritsar',
-      x: 1700,
-      y: -8300,
-      value: 34,
-      AQ: 'M'
-    },
+//     },{
+//       name: 'Raipur',
+//       x: 3900,
+//       y: -4300,
+//       value: 41,
+//       AQ: ''
+//     },
+// {
+//       name: 'Ahmedabad',
+//       x: 600,
+//       y: -5000,
+//       value: 19,
+//       AQ: 'M'
+//     },
+// {
+//       name: 'Ferozabad',
+//       x: 2600,
+//       y: -6500,
+//       value: 31,
+//       AQ: 'H'
+//     },
+// {
+//       name: 'Amritsar',
+//       x: 1700,
+//       y: -8300,
+//       value: 34,
+//       AQ: 'M'
+//     },
 
-{
-      name: 'Kanpur',
-      x: 3600,
-      y: -6190,
-      value: 32,
-      AQ: 'M'
-    },
-{
-      name: 'Agra',
-      x: 2500,
-      y: -6600,
-      value: 19,
-      AQ: 'M'
-    }
-,
-{
-      name: 'Ludhiana',
-      x: 1660,
-      y: -8100,
-      value: 30,
-      AQ: 'M'
-    },
+// {
+//       name: 'Kanpur',
+//       x: 3600,
+//       y: -6190,
+//       value: 32,
+//       AQ: 'M'
+//     },
+// {
+//       name: 'Agra',
+//       x: 2500,
+//       y: -6600,
+//       value: 19,
+//       AQ: 'M'
+//     }
+// ,
+// {
+//       name: 'Ludhiana',
+//       x: 1660,
+//       y: -8100,
+//       value: 30,
+//       AQ: 'M'
+//     },
       
       
-    ]
+//     ]
         }]
     });
 });
@@ -458,46 +485,59 @@ data: [/*{
 <script>
 
 $(function () {
+// var data = [
+//     ['in-5390',''], //
+//     ['in-py', 35],  // Puducherry
+//     ['in-ld', ''],  // Lakshadeep *
+//     ['in-an', ''],  // 
+//     ['in-wb', 78], // West Bengal
+//     ['in-or', 66],  // Orissa
+//     ['in-br', 82],  // Bihar
+//     ['in-sk', ''],  // Sikkim *
+//     ['in-ct', 77], // Chattisgarh
+//     ['in-tn', 58],  // Tamil Nadu
+//     ['in-mp', 92],  // Madhya Pradesh
+//     ['in-2984',68],  // Gujarat
+//     ['in-ga', 57],  // Goa
+//     ['in-nl', 57],  // Nagaland
+//     ['in-mn', ''],  // Manipur *
+//     ['in-ar', ''],  // Arunanachal Pradesh *
+//     ['in-mz', 39],   // Mizoram  
+//     ['in-tr', ''],  // Tripura *
+//     ['in-3464',32],  // Daman and Diu
+//     ['in-dl', 154],  // Delhi 
+//     ['in-hr', 171],  // Haryana
+//     ['in-ch', 69],   // Chandigarh
+//     ['in-hp', 67],   // Himachal Pradesh
+//     ['in-jk', 76],   // Jammu & Kashmir
+//     ['in-kl', 39],   // Kerala
+//     ['in-ka', 58],  // Karnataka
+//     ['in-dn', 36],  // Dadra & Nagar Haveli
+//     ['in-mh', 74], // Maharashtra
+//     ['in-as', 61], // Assam
+//     ['in-ap', 60],  // Andhra Pradesh
+//     ['in-ml', 74],   // Meghalaya
+//     ['in-pb', 117],  // Punjab
+//     ['in-rj', 107], // Rajasthan
+//     ['in-up', 114], // Uttar Pradesh
+//     ['in-ut', 108], //Uttaranchal
+//     ['in-jh', 120]  // Jharkhand
+// ];
+
 var data = [
-    ['in-5390',''], //
-    ['in-py', 35],  // Puducherry
-    ['in-ld', ''],  // Lakshadeep *
-    ['in-an', ''],  // 
-    ['in-wb', 78], // West Bengal
-    ['in-or', 66],  // Orissa
-    ['in-br', 82],  // Bihar
-    ['in-sk', ''],  // Sikkim *
-    ['in-ct', 77], // Chattisgarh
-    ['in-tn', 58],  // Tamil Nadu
-    ['in-mp', 92],  // Madhya Pradesh
-    ['in-2984',68],  // Gujarat
-    ['in-ga', 57],  // Goa
-    ['in-nl', 57],  // Nagaland
-    ['in-mn', ''],  // Manipur *
-    ['in-ar', ''],  // Arunanachal Pradesh *
-    ['in-mz', 39],   // Mizoram  
-    ['in-tr', ''],  // Tripura *
-    ['in-3464',32],  // Daman and Diu
-    ['in-dl', 154],  // Delhi 
-    ['in-hr', 171],  // Haryana
-    ['in-ch', 69],   // Chandigarh
-    ['in-hp', 67],   // Himachal Pradesh
-    ['in-jk', 76],   // Jammu & Kashmir
-    ['in-kl', 39],   // Kerala
-    ['in-ka', 58],  // Karnataka
-    ['in-dn', 36],  // Dadra & Nagar Haveli
-    ['in-mh', 74], // Maharashtra
-    ['in-as', 61], // Assam
-    ['in-ap', 60],  // Andhra Pradesh
-    ['in-ml', 74],   // Meghalaya
-    ['in-pb', 117],  // Punjab
-    ['in-rj', 107], // Rajasthan
-    ['in-up', 114], // Uttar Pradesh
-    ['in-ut', 108], //Uttaranchal
-    ['in-jh', 120]  // Jharkhand
-];
-
-
+        ['madhya pradesh', 92], ['uttar pradesh', 114], ['karnataka', 58],
+        ['nagaland', 57], ['bihar', 82], ['lakshadweep', 0],
+        ['andaman and nicobar', 0], ['assam', 61], ['west bengal', 78],
+        ['puducherry', 35], ['daman and diu', 32], ['gujarat', 68],
+        ['rajasthan', 107], ['dadara and nagar havelli', 36],
+        ['chhattisgarh', 58], ['tamil nadu', 58], ['chandigarh', 69],
+        ['punjab', 117], ['haryana', 154], ['andhra pradesh', 60],
+        ['maharashtra', 74], ['himachal pradesh', 67], ['meghalaya', 74],
+        ['kerala', 39], ['telangana', 0], ['mizoram', 39], ['tripura', 0],
+        ['manipur', 0], ['arunanchal pradesh', 0], ['jharkhand', 120],
+        ['goa', 57], ['nct of delhi', 154], ['odisha', 66],
+        ['jammu and kashmir', 76], ['sikkim', 0], ['uttarakhand', 108]
+]
     // Initiate the chart
     $('#container3').highcharts('Map', {
 
@@ -560,7 +600,7 @@ tooltip: {
         series: [{
             data: data,
  
-            mapData: Highcharts.maps['countries/in/in-all'],
+            mapData: Highcharts.maps['countries/in/custom/in-all-disputed'],
             joinBy: 'hc-key',
             //enableMouseTracking: false,
             name: 'pollution',
@@ -571,94 +611,96 @@ tooltip: {
             },
             dataLabels: {
                 enabled: true,
-                format: '{point.options.name}'
+                format: '{point.name}'
             }
         }, {
     type: 'mappoint',
     name: 'Cities',
-    color: "black",
+    color: "blue",
 dataLabels: {
       	enabled: true
       },
-data: [/*{
+// data: [
+//   // {
     	
-      name: 'Chennai',
-      x: 3354,
-      y: -828
-    },*/ {
-      name: 'Delhi',
-      x: 2300,
-      y: -7100,
-      value: 154,
-      AQ: 'C'
-    }, {
-      name: 'Patna',
-      x: 5200,
-      y: -6000,
-      value: 114,
-      AQ: 'C'
-    },
-{
-      name: 'Gwalior',
-      x: 2600,
-      y: -5990,
-      value: 177,
-      AQ: 'C'
+//   //     name: 'Chennai',
+//   //     x: 3354,
+//   //     y: -828
+//   //   },
+//      {
+//       name: 'Delhi',
+//       x: 2300,
+//       y: -7100,
+//       value: 154,
+//       AQ: 'C'
+//     }, {
+//       name: 'Patna',
+//       x: 5200,
+//       y: -6000,
+//       value: 114,
+//       AQ: 'C'
+//     },
+// {
+//       name: 'Gwalior',
+//       x: 2600,
+//       y: -5990,
+//       value: 177,
+//       AQ: 'C'
  
-    },{
-      name: 'Raipur',
-      x: 3900,
-      y: -4300,
-      value: 168,
-      AQ: 'C'
-    },
-{
-      name: 'Ahmedabad',
-      x: 600,
-      y: -5000,
-      value: 71,
-      AQ: 'C'
-    },
-{
-      name: 'Ferozabad',
-      x: 2600,
-      y: -6500,
-      value: 130,
-      AQ: 'C'
-    },
-{
-      name: 'Amritsar',
-      x: 1700,
-      y: -8300,
-      value: 133,
-      AQ: 'C'
-    },
+//     },{
+//       name: 'Raipur',
+//       x: 3900,
+//       y: -4300,
+//       value: 168,
+//       AQ: 'C'
+//     },
+// {
+//       name: 'Ahmedabad',
+//       x: 600,
+//       y: -5000,
+//       value: 71,
+//       AQ: 'C'
+//     },
+// {
+//       name: 'Ferozabad',
+//       x: 2600,
+//       y: -6500,
+//       value: 130,
+//       AQ: 'C'
+//     },
+// {
+//       name: 'Amritsar',
+//       x: 1700,
+//       y: -8300,
+//       value: 133,
+//       AQ: 'C'
+//     },
 
-{
-      name: 'Kanpur',
-      x: 3600,
-      y: -6190,
-      value: 125,
-      AQ: 'C'
-    },
-{
-      name: 'Agra',
-      x: 2500,
-      y: -6600,
-      value: 116,
-      AQ: 'C'
-    }
-,
-{
-      name: 'Ludhiana',
-      x: 1660,
-      y: -8100,
-      value: 130,
-      AQ: 'C'
-    },
+// {
+//       name: 'Kanpur',
+//       x: 3600,
+//       y: -6190,
+//       value: 125,
+//       AQ: 'C'
+//     },
+// {
+//       name: 'Agra',
+//       x: 2500,
+//       y: -6600,
+//       value: 116,
+//       AQ: 'C'
+//     }
+// ,
+// {
+//       name: 'Ludhiana',
+//       x: 1660,
+//       y: -8100,
+//       value: 130,
+//       AQ: 'C'
+//     },
       
       
-    ]
+//     ]
         }]
     });
 });
@@ -669,7 +711,7 @@ data: [/*{
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="//code.highcharts.com/maps/highmaps.js"></script>
 <script src="//code.highcharts.com/maps/modules/exporting.js"></script>
-<script src="//code.highcharts.com/mapdata/countries/in/in-all.js"></script>
+<script src="//code.highcharts.com/mapdata/countries/in/custom/in-all-disputed.js"></script>
 <div class="w3-container"  style="width:1180px;margin-top:20px">
   
   <div class="w3-card-4">

@@ -94,7 +94,7 @@ def data(request):
            "civilLines":"Civil Lines","dw":"Dwarka"}
 
            while(result is None):
-                     print("station",station_names[rowd])
+                    #  print("station",station_names[rowd])
                      Station_Name = " in " + station_names[rowd]
                      url = "http://www.dpccairdata.com/dpccairdata/display/AallStationView5MinData.php?stName={}".format(station_code[rowd])
 
@@ -114,63 +114,63 @@ def data(request):
                                 val = "-"
                              if param.index(td_list[0].text) == 0:
                                  Ammonia = val                            
-                                 print("AMMONIA:",val)
+                                #  print("AMMONIA:",val)
                                  Am = val
                              elif param.index(td_list[0].text) == 1:
                                  Carbon_Monoxide = val
-                                 print("CO:",val)
+                                #  print("CO:",val)
                                  CO = val
                              elif param.index(td_list[0].text) == 2:
                                  Nitrogen_Oxide = val
-                                 print("NO:",val)
+                                #  print("NO:",val)
                                  NO = val
                              elif param.index(td_list[0].text) == 3:
                                  Ozone = val
-                                 print("OZONE:",val)
+                                #  print("OZONE:",val)
                                  OZ = val
                              elif param.index(td_list[0].text) == 4:
                                  Sulphur_Dioxide = val
-                                 print("SO2:",val)
+                                #  print("SO2:",val)
                                  SO2 = val
                              elif param.index(td_list[0].text) == 5:
                                  Ambient_Temperature = val
-                                 print("AMBIENT TEMP:",val)
+                                #  print("AMBIENT TEMP:",val)
                                  AT = val
                              elif param.index(td_list[0].text) == 6:
                                  Particulate_Matter_10 = val
-                                 print("PPP10:",val)
+                                #  print("PPP10:",val)
                                  PM10 = val
                              elif param.index(td_list[0].text) == 7:
                                  Benzene = val
-                                 print("BENZENE:",val)
+                                #  print("BENZENE:",val)
                                  BE = val
                              elif param.index(td_list[0].text) == 8:
                                  Nitrogen_Dioxide = val
-                                 print("NO2:",val)
+                                #  print("NO2:",val)
                                  NO2 = val
                              elif param.index(td_list[0].text) == 9:
                                  Oxides_of_Nitrogen = val
-                                 print("ON:",val)
+                                #  print("ON:",val)
                                  ON = val
                              elif param.index(td_list[0].text) == 10:
                                  p_Xylene = val
-                                 print("P_XYLENE:",val)
+                                #  print("P_XYLENE:",val)
                                  pxy = val
                              elif param.index(td_list[0].text) == 11:
                                  Toluene = val
-                                 print("TOLUENE:",val)
+                                #  print("TOLUENE:",val)
                                  TO = val
                              elif param.index(td_list[0].text) == 12:
                                  Barometric_Pressure = val
-                                 print("BAROMETRIC:",val)
+                                #  print("BAROMETRIC:",val)
                                  BP = val
                              elif param.index(td_list[0].text) == 13:
                                  Particulate_Matter_2 = val
-                                 print("PPO2:",val)
+                                #  print("PPO2:",val)
                                  PM2_5 = val
                              elif param.index(td_list[0].text) == 14:
                                  Solar_Radiation = val
-                                 print("Solar_rad:",val)
+                                #  print("Solar_rad:",val)
                                  SR = val
                      
                      #time.sleep(1000)
@@ -200,7 +200,7 @@ def data(request):
 "Sulphur_Dioxide":SO2,"Ambient_Temperature":AT,"Particulate_Matter_10":PM10
           ,"Benzene":BE,"Nitrogen_Dioxide":NO2,"Oxides_of_Nitrogen":ON,"p_Xylene":pxy,
 "Toluene":TO,"Barometric_Pressure":BP,"Particulate_Matter_2":PM2_5,"Solar_Radiation":SR,"StationName":Station_Name}
-     print(context)
+    #  print(context)
      #print(type(context) is dict)
      return render(request,"aqp/template.html",context)                 
 
