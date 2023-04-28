@@ -1,5 +1,5 @@
 django-graphos
-django==3.0.6
+django==3.1.14
 django-utils-six
 gunicorn
 bs4
